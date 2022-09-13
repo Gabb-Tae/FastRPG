@@ -25,6 +25,8 @@ class skills(models.Model):
     )
     def __str__(self):
         return self.description
+    class Meta:
+        verbose_name_plural = "Skills"
 
 
 class itens(models.Model):
@@ -32,6 +34,8 @@ class itens(models.Model):
     damage = models.CharField(max_length=50)
     def __str__(self):
         return self.description
+    class Meta:
+        verbose_name_plural = "Itens"
 
 
 class itensclass(models.Model):
@@ -41,6 +45,8 @@ class itensclass(models.Model):
     itens = models.ForeignKey(
     itens, on_delete=models.PROTECT, related_name="itensclass"
     )
+    class Meta:
+        verbose_name_plural = "Itens-Classe"
 
 class rpgrace(models.Model):
     name = models.CharField(max_length=50)
@@ -60,5 +66,5 @@ class rpgrace(models.Model):
         return self.name
 
     class Meta:
-        verbose_name_plural = "Raças"
+        verbose_name_plural = "Races"
 
