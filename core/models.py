@@ -11,13 +11,36 @@ class rpgclass(models.Model):
     intelligence = models.IntegerField(max_length=2)
     wisdom = models.IntegerField(max_length=2)
     charism = models.IntegerField(max_length=2)
+    
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = "Classes"
 
 class skills(models.Model):
     description = models.CharField(max_length=1000)
+    rpgclass = models.ForeignKey(
+        rpgclass, on_delete=models.PROTECT, related_name="skills"
+    )
+    def __str__(self):
+        return self.description
+
 
 class itens(models.Model):
     description = models.CharField(max_length=100)
     damage = models.CharField(max_length=50)
+    def __str__(self):
+        return self.description
+
+
+class itensclass(models.Model):
+    rpgclass = models.ForeignKey(
+    rpgclass, on_delete=models.PROTECT, related_name="itensclass"
+    )
+    itens = models.ForeignKey(
+    itens, on_delete=models.PROTECT, related_name="itensclass"
+    )
 
 class rpgrace(models.Model):
     name = models.CharField(max_length=50)
@@ -32,4 +55,10 @@ class rpgrace(models.Model):
     intelligence = models.IntegerField(max_length=2)
     wisdom = models.IntegerField(max_length=2)
     charism = models.IntegerField(max_length=2)
+    
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = "Raças"
 
