@@ -1,16 +1,17 @@
 from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 class rpgclass(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=700)
-    life = models.IntegerField(max_length=5)
+    life = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(999)])
     main_skill = models.CharField(max_length=20)
-    strength = models.IntegerField(max_length=2)
-    dexterity = models.IntegerField(max_length=2)
-    constitution = models.IntegerField(max_length=2)
-    intelligence = models.IntegerField(max_length=2)
-    wisdom = models.IntegerField(max_length=2)
-    charism = models.IntegerField(max_length=2)
+    strength = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(30)])
+    dexterity = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(30)])
+    constitution = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(30)])
+    intelligence = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(30)])
+    wisdom = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(30)])
+    charism = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(30)])
     
     def __str__(self):
         return self.name
@@ -30,10 +31,10 @@ class skills(models.Model):
 
 
 class itens(models.Model):
-    description = models.CharField(max_length=100)
-    damage = models.CharField(max_length=50)
+    name = models.CharField(max_length=100)
+    definition = models.CharField(max_length=300)
     def __str__(self):
-        return self.description
+        return self.name
     class Meta:
         verbose_name_plural = "Itens"
 
@@ -51,17 +52,16 @@ class itensclass(models.Model):
 class rpgrace(models.Model):
     name = models.CharField(max_length=50)
     features = models.CharField(max_length=700)
-    life = models.IntegerField(max_length=5)
     size = models.CharField(max_length=20)
     speed = models.CharField(max_length=20)
     languages = models.CharField(max_length=60)
-    strength = models.IntegerField(max_length=2)
-    dexterity = models.IntegerField(max_length=2)
-    constitution = models.IntegerField(max_length=2)
-    intelligence = models.IntegerField(max_length=2)
-    wisdom = models.IntegerField(max_length=2)
-    charism = models.IntegerField(max_length=2)
-    
+    strength = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(30)])
+    dexterity = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(30)])
+    constitution = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(30)])
+    intelligence = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(30)])
+    wisdom = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(30)])
+    charism = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(30)])
+
     def __str__(self):
         return self.name
 
